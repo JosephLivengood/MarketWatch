@@ -1,0 +1,43 @@
+html
+  head
+    title MarketWatch- a real-time collaborative way to watch the market!
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js')
+    script(src='js/app.js')
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css')
+    link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+    link(rel='stylesheet', href='css/style.css')
+  body(ng-app='marketWatch', ng-controller='MainCtrl')
+    #heading.container(style='display:none')
+      .jumbotron.text-center
+        h1
+          | MarketWatch 
+          span.label.label-info {{ stocks.length }}
+      #container(style='height: 400px; min-width: 310px')
+      #stock-list.row(style='display:none')
+        .col-sm-6.col-md-4(ng-repeat='stock in stocks')
+          .well.well-sm
+              h1.text-center(style='font-size:4em; margin: auto; color: #6d6d6d;')
+                button.btn.btn-link
+                  a(ng-href='https://www.google.com/finance?q={{stock}}', style='color: #c6c6c6;')
+                    i.fa.fa-newspaper-o.fa-3x(aria-hidden='true')
+                | {{stock}}
+                button.btn.btn-link(ng-click='deleteStock(stock)', style='color: #c6c6c6;')
+                  i.fa.fa-trash.fa-3x(aria-hidden='true')
+        #stock-form(style='display:none')
+            .col-sm-6.col-lg-4
+              .well.well-sm.text-center
+                  form.form-inline(style='margin:auto')
+                    .form-group
+                      input.form-control.input-lg.text-center(type='text', placeholder='Stock Ticker', ng-model='formData.text')
+                    button.btn.btn-primary.btn-lg(type='submit', ng-click='createStock()') Add
+                    
+    footer.footer
+      p.text-center MarketWatch is a real-time collaborative site where the changes you make are seen instantly across all users using <strong>Socket.io</strong> and <strong>Angular</strong>!
+      p.text-center Joseph Livengood
+      
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.6.0/socket.io.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src='https://code.highcharts.com/stock/highstock.js')
+    script(src='https://code.highcharts.com/stock/modules/exporting.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js')
