@@ -2,17 +2,12 @@ var express     =       require('express');
 var app         =       express();
 var server      =       require('http').Server(app);
 var io          =       require('socket.io')(server);
-var PORT        =       process.env.port || 8080;
+var PORT        =       process.env.PORT || 8080;
 var path        =       process.cwd();
 
 /*Rendered pug while in dev*/
 app.set('view engine', 'pug');
 app.use(express.static(__dirname + '/public'));
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
 
 /*All routes lead to our app*/
 app.get('*', function(req, res) {
