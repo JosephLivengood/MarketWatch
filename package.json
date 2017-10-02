@@ -5,13 +5,17 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "author": "Joseph Livengood",
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
     "pug": "^2.0.0-beta6",
-    "socket.io": "^1.6.0"
-  }
+    "socket.io": "^2.0.2",
+    "snyk": "^1.42.2"
+  },
+  "snyk": true
 }
